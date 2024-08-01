@@ -11,3 +11,14 @@ export async function getProductTypeById(id: string) {
         },
     });
 }
+
+export async function getProductTypeBySlug(slug: string) {
+    return prisma.productType.findUnique({
+        where: {
+            slug,
+        },
+        include: {
+            products: true,
+        },
+    });
+}
