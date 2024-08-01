@@ -1,30 +1,38 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 
 model User {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  id       String @id @default(cuid())
   email    String @unique
   password String
+  role     Role   @default(USER)
 }
 
 model Product {
-  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  id            String      @id @default(cuid())
   slug          String      @unique
   image         String
   name          String
   description   String
   productType   ProductType @relation(fields: [productTypeId], references: [id])
-  productTypeId String      @db.ObjectId
+  productTypeId String
 }
 
 model ProductType {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  id       String    @id @default(cuid())
   slug     String    @unique
   name     String
   products Product[]

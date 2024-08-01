@@ -5,7 +5,7 @@ export async function getAllProductTypes() {
 }
 
 export async function getProductTypeById(id: string) {
-    return prisma.productType.findUnique({
+    return prisma.productType.findFirst({
         where: {
             id,
         },
@@ -13,7 +13,7 @@ export async function getProductTypeById(id: string) {
 }
 
 export async function getProductTypeBySlug(slug: string) {
-    return prisma.productType.findUnique({
+    return prisma.productType.findFirst({
         where: {
             slug,
         },
