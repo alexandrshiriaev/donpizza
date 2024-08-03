@@ -1,6 +1,6 @@
 import { CreateUserDto } from '@/data/user/create-user-dto';
 import { saltAndHashPassword } from '@/lib/password';
-import prisma from '@/data/client';
+import prisma from '@/data/clients/prisma';
 
 export async function getUserByEmail(email: string) {
     const user = await prisma.user.findFirst({ where: { email: email } });

@@ -1,4 +1,4 @@
-import prisma from '@/data/client';
+import prisma from '@/data/clients/prisma';
 import { CreateProductDto } from '@/data/product/create-product-dto';
 import { getProductTypeById, getProductTypeBySlug } from '@/data/product-type';
 

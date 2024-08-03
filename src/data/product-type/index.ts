@@ -1,4 +1,4 @@
-import prisma from '@/data/client';
+import prisma from '@/data/clients/prisma';
 
 export async function getAllProductTypes() {
     return prisma.productType.findMany();

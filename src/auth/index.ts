@@ -1,8 +1,17 @@
-import NextAuth, { NextAuthConfig } from 'next-auth';
+import NextAuth, { DefaultSession, NextAuthConfig } from 'next-auth';
 import Credentials from '@auth/core/providers/credentials';
 import { LoginSchema } from '@/schemas';
 import { getUserByEmail } from '@/data/user';
 import { comparePasswords } from '@/lib/password';
+import { Role } from '@prisma/client';
+
+declare module 'next-auth' {
+    interface Session {
+        user: {
+            role: Role;
+        } & DefaultSession['user'];
+    }
+}
 
 const providers = [
     Credentials({
