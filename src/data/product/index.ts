@@ -1,15 +1,16 @@
 import prisma from '@/data/clients/prisma';
 import { CreateProductDto } from '@/data/product/create-product-dto';
-import { getProductTypeById, getProductTypeBySlug } from '@/data/product-type';
+import { getProductTypeBySlug } from '@/data/product-type';
 
 export async function getAllProducts() {
     return prisma.product.findMany();
 }
 
 export async function createProduct(createProductDto: CreateProductDto) {
-    const { slug, name, productTypeId, image, description } = createProductDto;
+    const { slug, name, productTypeSlug, image, description } =
+        createProductDto;
 
-    const productType = await getProductTypeById(productTypeId);
+    const productType = await getProductTypeBySlug(productTypeSlug);
 
     if (!productType) return null;
 
@@ -19,7 +20,7 @@ export async function createProduct(createProductDto: CreateProductDto) {
             name,
             description,
             image,
-            productTypeId,
+            productTypeId: productType.id,
         },
     });
 

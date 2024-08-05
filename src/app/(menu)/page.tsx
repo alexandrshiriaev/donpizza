@@ -23,7 +23,7 @@ export default async function MenuPage() {
                     <Card key={product.slug}>
                         <CardHeader>
                             <Image
-                                src="https://storage.yandexcloud.net/donpizza-media/1.webp"
+                                src={product.image}
                                 width={250}
                                 height={250}
                                 alt="product image"

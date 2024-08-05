@@ -97,12 +97,7 @@ export function LoginForm() {
                 />
                 {error && <h2 key="res-message">{error}</h2>}
                 {success && <h2 key="res-message">{success}</h2>}
-                <Button
-                    disabled={isPending}
-                    variant="outline"
-                    type="submit"
-                    className="mt-4"
-                >
+                <Button disabled={isPending} type="submit" className="mt-4">
                     Войти
                 </Button>
             </form>

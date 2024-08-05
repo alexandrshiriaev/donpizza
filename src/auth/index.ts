@@ -6,6 +6,7 @@ import { comparePasswords } from '@/lib/password';
 import { Role } from '@prisma/client';
 
 declare module 'next-auth' {
+    //ts-ignore
     interface Session {
         user: {
             role: Role;
